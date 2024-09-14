@@ -1,7 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
 
-
 const ResultPage = () => {
     const location = useLocation();
     const formData = location.state as { [key: string]: string };
