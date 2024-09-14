@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Box, Typography, CssBaseline } from '@mui/material';
-
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
 
 type FormData = {
     age: string;
@@ -83,6 +83,12 @@ const FormPage = () => {
                 <Button type="submit" variant="contained" color="primary">
                     Submit
                 </Button>
+                <SignedOut>
+                    <SignInButton />
+                </SignedOut>
+                <SignedIn>
+                    <UserButton />
+                </SignedIn>
             </Box>
         </Box>
     );
