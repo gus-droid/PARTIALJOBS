@@ -23,17 +23,44 @@ const ResultPage = () => {
     const [test_chatgpt, setText] = useState("hehe");
 
     useEffect(() => {
-        async function assign_text() {
+        async function update_text() {
             get_meal_plan(40, 40, 40).then((result) => {
-                setText( result["breakfast"]["meal"] );
-                console.log("PRINTING");
-                console.log(test_chatgpt);
+                var builder_string = "";
+
+                builder_string += result["breakfast"]["meal"] + "\n";
+                builder_string += "Ingredients" + "\n";
+                for(const index in result["breakfast"]["ingredients"]) {
+                    var ingredient = result.breakfast.ingredients[index];
+                    console.log(ingredient);
+                    builder_string += ` * ${ingredient["name"]} Cal: ${ingredient.calories} kcal  Protein: ${ingredient.protein}g"\n`;
+                }
+                builder_string += "    \n";
+
+                builder_string += result["lunch"]["meal"] + "\n";
+                builder_string += "Ingredients" + "\n";
+                for(const index in result["lunch"]["ingredients"]) {
+                    var ingredient = result.lunch.ingredients[index];
+                    console.log(ingredient);
+                    builder_string += ` * ${ingredient["name"]} Cal: ${ingredient.calories} kcal  Protein: ${ingredient.protein}g"\n`;
+                }
+                builder_string += "    \n";
+
+
+                builder_string += result["dinner"]["meal"] + "\n";
+                builder_string += "Ingredients" + "\n";
+                for(const index in result["dinner"]["ingredients"]) {
+                    var ingredient = result.dinner.ingredients[index];
+                    console.log(ingredient);
+                    builder_string += ` * ${ingredient["name"]} Cal: ${ingredient.calories} kcal  Protein: ${ingredient.protein}g"\n`;
+                }
+                builder_string += "    \n";
+
+                setText( builder_string );
             }).catch((error) => {
                 console.error('Error:', error);
             });
         }
-        assign_text();
-        console.log(test_chatgpt);
+        update_text();
     }, []);
 
 
