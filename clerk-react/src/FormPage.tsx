@@ -10,27 +10,27 @@ import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
 const items = [
     {
         icon: <SettingsSuggestRoundedIcon sx={{ color: 'text.secondary' }} />,
-        title: 'Adaptable performance',
+        title: 'Our Mission: Personalized Nutrition, Simplified',
         description:
-            'Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.',
+            'At our core, we believe that achieving your fitness goals shouldn\'t be complicated. Whether you\'re looking to bulk up, lose weight, or maintain a balanced lifestyle, we simplify nutrition planning by creating personalized meal plans within your budget. With the help of innovative technologies and a data-driven approach, we empower you to reach your goals with ease.',
     },
     {
         icon: <ConstructionRoundedIcon sx={{ color: 'text.secondary' }} />,
-        title: 'Built to last',
+        title: 'Tailored Nutrition for Every Goal',
         description:
-            'Experience unmatched durability that goes above and beyond with lasting investment.',
+            'We know that one size doesn’t fit all. Our platform adapts to your unique needs—whether you\'re aiming to build muscle, burn fat, or just stay in shape. With our expert-backed recommendations, you can be sure that every meal plan is designed with your specific goals in mind, ensuring the right balance of nutrition to fuel your progress.',
     },
     {
         icon: <ThumbUpAltRoundedIcon sx={{ color: 'text.secondary' }} />,
-        title: 'Great user experience',
+        title: 'Seamless User Experience',
         description:
-            'Integrate our product into your routine with an intuitive and easy-to-use interface.',
+            'Integrate our platform into your daily routine with ease. The intuitive design allows you to effortlessly input your data, track your progress, and adjust your goals. We’re here to make your journey as smooth and straightforward as possible—because focusing on your fitness should never feel like a chore.',
     },
     {
         icon: <AutoFixHighRoundedIcon sx={{ color: 'text.secondary' }} />,
-        title: 'Innovative functionality',
+        title: 'Innovative Functionality',
         description:
-            'Stay ahead with features that set new standards, addressing your evolving needs better than the rest.',
+            'Stay ahead with cutting-edge features that evolve with your needs. Our system is built to provide real-time meal recommendations based on your fitness journey and budget, with constant updates to ensure you’re always working with the latest nutritional insights.',
     },
 ];
 
@@ -165,4 +165,3 @@ const FormPage = () => {
 };
 
 export default FormPage;
-
