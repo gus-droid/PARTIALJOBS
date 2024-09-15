@@ -75,19 +75,19 @@ const FormPage = () => {
                 width: '100vw',
                 margin: 0,
                 padding: 0,
-                background: 'linear-gradient(135deg, #70e1f5 0%, #ffd194 100%)', // Gradient background
+                background: 'linear-gradient(135deg, #70e1f5 0%, #ffd194 100%)', // Single gradient for entire background
             }}
         >
             <CssBaseline />
             {/* Left Side of Sign-up form */}
             <Box
                 sx={{
-                    width: '50%', // Takes half the screen width
+                    width: '50%',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     p: 4,
-                    backgroundColor: 'white',
+                    background: 'transparent', // Transparent to let parent gradient show
                 }}
             >
                 <Box
@@ -115,7 +115,7 @@ const FormPage = () => {
                             label={field.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase())}
                             variant="outlined"
                             name={field}
-                            value={formData[field]} //error
+                            value={formData[field]}
                             onChange={handleChange}
                             required={['age', 'height', 'currentWeight', 'goalWeight', 'budget'].includes(field)}
                             sx={{ mb: 2 }}
@@ -135,6 +135,7 @@ const FormPage = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     p: 4,
+                    background: 'transparent', // Transparent to let parent gradient show
                 }}
             >
                 <Stack
@@ -164,3 +165,4 @@ const FormPage = () => {
 };
 
 export default FormPage;
+
