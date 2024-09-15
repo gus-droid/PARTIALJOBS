@@ -12,13 +12,13 @@ const items = [
         icon: <SettingsSuggestRoundedIcon sx={{ color: 'text.secondary' }} />,
         title: 'Our Mission: Personalized Nutrition, Simplified',
         description:
-            'At our core, we believe that achieving your fitness goals shouldn\'t be complicated. Whether you\'re looking to bulk up, lose weight, or maintain a balanced lifestyle, we simplify nutrition planning by creating personalized meal plans within your budget. With the help of innovative technologies and a data-driven approach, we empower you to reach your goals with ease.',
+            'At our core, we believe that achieving your fitness goals shouldn\'t be complicated. Whether you\'re looking to bulk up, lose weight, or maintain a balanced lifestyle, we simplify nutrition planning by creating personalized meal plans within your budget. With the help of AI, and innovative technologies like Clerk and Convex, we empower you to reach your goals with ease.',
     },
     {
         icon: <ConstructionRoundedIcon sx={{ color: 'text.secondary' }} />,
-        title: 'Tailored Nutrition for Every Goal',
+        title: 'How It Works',
         description:
-            'We know that one size doesn’t fit all. Our platform adapts to your unique needs—whether you\'re aiming to build muscle, burn fat, or just stay in shape. With our expert-backed recommendations, you can be sure that every meal plan is designed with your specific goals in mind, ensuring the right balance of nutrition to fuel your progress.',
+            'Reach your health goals effortlessly. Our AI crafts personalized nutrition plans based on your objectives and budget, while scouring local stores for the best deals. Experience precision nutrition and smart savings, making your journey to better health both effective and affordable.',
     },
     {
         icon: <ThumbUpAltRoundedIcon sx={{ color: 'text.secondary' }} />,
