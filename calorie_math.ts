@@ -17,7 +17,7 @@ export function calculate_bmr(weight: number, height: number, age: number, male:
 
 // Calculate difference in calories from normal to lose x pounds per week.
 export function calorie_delta_goal(lbs_per_week: number): number {
-    return (3500.0 / 7.0) * lbs_per_week;
+    return (3500.0 / 7.0) * lbs_per_week; //Calorie deficit needed every day
 }
 
 export function energy_delta(bmr: number, level: ExerciseLevel): number {

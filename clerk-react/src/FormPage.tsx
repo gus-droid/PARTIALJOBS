@@ -3,6 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Box, Typography, CssBaseline } from '@mui/material';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
 
+// import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
+// import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
+// import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
+// import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
+
+
 type FormData = {
     age: string;
     height: string;
@@ -13,6 +19,18 @@ type FormData = {
     dietaryRestrictions: string;
     [key: string]: string;  // Add this line
 };
+
+// Addition of our information section
+// const items = [
+//     {
+//         icon: <SettingsSuggestRoundedIcon sx={{ color: 'text.secondary'}} />
+//     }
+// ]
+
+
+
+
+
 
 const FormPage = () => {
     const navigate = useNavigate();
