@@ -2,7 +2,7 @@ import OpenAI from "openai";
 import { fetchNutritionData } from "./NutritionNinja";
 
 // Define an interface for an ingredient
-interface Ingredient {
+export interface Ingredient {
   name: string; // Name of the ingredient
   quantity: string; // Quantity by unit (e.g., "1 cup", "200 grams")
   cost_usd: number; // Cost in USD
@@ -19,7 +19,7 @@ interface Meal {
 }
 
 // Define the overall structure
-interface DailyMeals {
+export interface DailyMeals {
   breakfast: Meal; // Details for breakfast
   lunch: Meal; // Details for lunch
   dinner: Meal; // Details for dinner
@@ -70,10 +70,37 @@ export async function get_meal_plan(
 
   // Correct data with NutritionNinja
   const times = ["breakfast", "lunch", "dinner"];
-  times.forEach((time: string) => {
-    for (const index in data[time]["ingredients"]) {
-      async function inner() {
-        var ingredient = data.breakfast.ingredients[index];
+
+    for (const index in data["breakfast"]["ingredients"]) {
+    var ingredient = data["breakfast"].ingredients[index];
+    var ingredient_name = ingredient.name;
+    var ingredient_amount = ingredient.quantity;
+    var prompt = ingredient_amount + " of " + ingredient_name;
+
+    var corrected_data = await fetchNutritionData(prompt);
+    ingredient.protein = corrected_data.items[0].protein_g;
+    ingredient.fat = corrected_data.items[0].fat_total_g;
+    ingredient.carbs = corrected_data.items[0].carbohydrates_total_g;
+
+    }
+
+
+    for (const index in data["lunch"]["ingredients"]) {
+    var ingredient = data["lunch"].ingredients[index];
+    var ingredient_name = ingredient.name;
+    var ingredient_amount = ingredient.quantity;
+    var prompt = ingredient_amount + " of " + ingredient_name;
+
+    var corrected_data = await fetchNutritionData(prompt);
+    ingredient.protein = corrected_data.items[0].protein_g;
+    ingredient.fat = corrected_data.items[0].fat_total_g;
+    ingredient.carbs = corrected_data.items[0].carbohydrates_total_g;
+
+    }
+
+
+    for (const index in data["dinner"]["ingredients"]) {
+        var ingredient = data["dinner"].ingredients[index];
         var ingredient_name = ingredient.name;
         var ingredient_amount = ingredient.quantity;
         var prompt = ingredient_amount + " of " + ingredient_name;
@@ -82,11 +109,12 @@ export async function get_meal_plan(
         ingredient.protein = corrected_data.items[0].protein_g;
         ingredient.fat = corrected_data.items[0].fat_total_g;
         ingredient.carbs = corrected_data.items[0].carbohydrates_total_g;
-      }
 
-      inner();
     }
-  });
+
+
+
+  console.log(data);
 
   return data;
 }

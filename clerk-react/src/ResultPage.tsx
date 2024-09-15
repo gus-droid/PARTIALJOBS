@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Card, TextField, Button, Box, Typography, CssBaseline, Chip, Stack, Divider } from '@mui/material';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 import { ExerciseLevel, calculate_bmr, calorie_delta_goal, energy_delta } from './calorie_math';
-import {get_meal_plan} from './OpenAI';
+import {get_meal_plan, Ingredient, DailyMeals} from './OpenAI';
 
 var first_passed = false;
 var breakfast = "loading...";
@@ -46,9 +46,9 @@ const ResultPage = () => {
 
     useEffect(() => {
         async function update_text() {
-            get_meal_plan(50, 40, 40, 40).then((result) => {
+            get_meal_plan(50, 40, 40, 40).then((result: DailyMeals) => {
+                console.log(result);
                 
-                console.log("running")
                 breakfast_ing = "Ingredients: ";
                 
                 breakfast = result["breakfast"]["meal"];
@@ -73,11 +73,13 @@ const ResultPage = () => {
                 lunch_ing = "Ingredients: ";
                 lunch = result["lunch"]["meal"];
                 for(const index in result["lunch"]["ingredients"]) {
-                    lunch_vals.cost += result.lunch.ingredients[index].cost_usd;
-                    lunch_vals.calories += result.lunch.ingredients[index].calories;
-                    lunch_vals.protein += result.lunch.ingredients[index].protein;
-                    lunch_vals.fat += result.lunch.ingredients[index].fat;
-                    lunch_vals.carbs += result.lunch.ingredients[index].carbs;
+                    var ingredient: Ingredient = result.lunch.ingredients[index];
+                    console.log(ingredient);
+                    lunch_vals.cost += ingredient.cost_usd;
+                    lunch_vals.calories += ingredient.calories;
+                    lunch_vals.protein += ingredient.protein;
+                    lunch_vals.fat += ingredient.fat;
+                    lunch_vals.carbs += ingredient.carbs;
 
                     if (first_passed == false) {
                         first_passed = true;
