@@ -61,7 +61,7 @@ const FormPage = () => {
         event.preventDefault();
       
         try {
-          const response = await axios.post('http://localhost:5000/api/users/create', formData);  // Ensure the URL is correct
+          const response = await axios.post('http://localhost:5001/api/users/create', formData);  // Ensure the URL is correct
           console.log('User created:', response.data);
           navigate('/result', { state: formData });
         } catch (error) {
