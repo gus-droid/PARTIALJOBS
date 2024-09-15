@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Card, TextField, Button, Box, Typography, CssBaseline, Chip, Stack, Divider } from '@mui/material';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 import { ExerciseLevel, calculate_bmr, calorie_delta_goal, energy_delta } from './calorie_math';
-import {chatCompletion} from './OpenAI';
+import {get_meal_plan} from './OpenAI';
 
 const ResultPage = () => {
     const location = useLocation();
@@ -24,8 +24,8 @@ const ResultPage = () => {
 
     useEffect(() => {
         async function assign_text() {
-            chatCompletion().then((result) => {
-                setText( result.choices[0].message.content);
+            get_meal_plan(40, 40, 40).then((result) => {
+                setText( result["breakfast"]["meal"] );
                 console.log("PRINTING");
                 console.log(test_chatgpt);
             }).catch((error) => {
@@ -35,6 +35,8 @@ const ResultPage = () => {
         assign_text();
         console.log(test_chatgpt);
     }, []);
+
+
 
     function MealCard() {
         return ( 
