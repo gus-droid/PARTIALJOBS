@@ -70,17 +70,25 @@ export async function get_meal_plan(carbs: number, protein: number, fat: number)
   // Correct data with NutritionNinja
   const times = ["breakfast", "lunch", "dinner"];
   times.forEach((time: string) => {
-  for(const index in data[time]["ingredients"]) {
-    var ingredient = data.breakfast.ingredients[index];
-      var ingredient_name = ingredient.name;
-      var ingredient_amount = ingredient.quantity;
-      var prompt = ingredient_amount + " of " + ingredient_name;
+      for(const index in data[time]["ingredients"]) {
+        
+        async function inner() {
+            var ingredient = data.breakfast.ingredients[index];
+              var ingredient_name = ingredient.name;
+              var ingredient_amount = ingredient.quantity;
+              var prompt = ingredient_amount + " of " + ingredient_name;
 
-      var corrected_data = await fetchNutritionData(prompt);
-      ingredient.protein = corrected_data.items[0].protein_g;
-      ingredient.fat = corrected_data.items[0].fat_total_g;
-      ingredient.carbs = corrected_data.items[0].carbohydrates_total_g;
-    }};
+              var corrected_data = await fetchNutritionData(prompt);
+              ingredient.protein = corrected_data.items[0].protein_g;
+              ingredient.fat = corrected_data.items[0].fat_total_g;
+              ingredient.carbs = corrected_data.items[0].carbohydrates_total_g;
+            }
+
+        inner();
+      }
+  }
+   );
+
 
   return data;
 }
