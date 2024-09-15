@@ -26,6 +26,8 @@ interface DailyMeals {
 }
 
 export async function get_meal_plan(
+ 
+  daily_budget: number,
   carbs: number,
   protein: number,
   fat: number,
@@ -39,7 +41,7 @@ export async function get_meal_plan(
     messages: [
       {
         role: "user",
-        content: `I have 60 dollars on food I can spend for today, and I need a daily caloric intake that needs to be exactly 1900 calories per day. Design 3 different meals that I can eat today that have at least ${protein} grams of protein in total. List all ingredients used and their cost and calories. If you are unsure of a meal or ingredient's number, give a reasonable estimate. Respond in the following: JSON format without talking.
+        content: `I have ${daily_budget} dollars on food I can spend for today, and I need a daily caloric intake that needs to be exactly 1900 calories per day. Design 3 different meals that I can eat today that have at least ${protein} grams of protein, ${carbs} grams of carbs, and ${fat} grams of fat in total. List all ingredients used and their cost and calories. If you are unsure of a meal or ingredient's number, give a reasonable estimate. Respond in the following: JSON format without talking.
 
 { 
   "breakfast": {
@@ -49,8 +51,7 @@ export async function get_meal_plan(
         "name": "[name of ingredient]",
         "quantity": "[by unit]",
         "cost_usd": 1.00,
-        "calories": 100,
-        "protein": 10
+        "calories": 100
       },
       ...
     ],
