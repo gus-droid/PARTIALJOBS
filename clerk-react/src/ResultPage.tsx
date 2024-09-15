@@ -56,11 +56,11 @@ const ResultPage = () => {
                 
                 breakfast = result["breakfast"]["meal"];
                 for(const index in result["breakfast"]["ingredients"]) {
-                    breakfast_vals.cost += result.breakfast.ingredients[index].cost_usd;
-                    breakfast_vals.calories += result.breakfast.ingredients[index].calories;
-                    breakfast_vals.protein += result.breakfast.ingredients[index].protein;
-                    breakfast_vals.fat += result.breakfast.ingredients[index].fat;
-                    breakfast_vals.carbs += result.breakfast.ingredients[index].carbs;
+                    breakfast_vals.cost += Math.round(result.breakfast.ingredients[index].cost_usd);
+                    breakfast_vals.calories += Math.round(result.breakfast.ingredients[index].calories);
+                    breakfast_vals.protein += Math.round(result.breakfast.ingredients[index].protein);
+                    breakfast_vals.fat += Math.round(result.breakfast.ingredients[index].fat);
+                    breakfast_vals.carbs += Math.round(result.breakfast.ingredients[index].carbs);
 
                     if (first_passed == false) {
                         first_passed = true;
@@ -78,11 +78,11 @@ const ResultPage = () => {
                 for(const index in result["lunch"]["ingredients"]) {
                     var ingredient: Ingredient = result.lunch.ingredients[index];
                     console.log(ingredient);
-                    lunch_vals.cost += ingredient.cost_usd;
-                    lunch_vals.calories += ingredient.calories;
-                    lunch_vals.protein += ingredient.protein;
-                    lunch_vals.fat += ingredient.fat;
-                    lunch_vals.carbs += ingredient.carbs;
+                    lunch_vals.cost += Math.round(ingredient.cost_usd);
+                    lunch_vals.calories += Math.round(ingredient.calories);
+                    lunch_vals.protein += Math.round(ingredient.protein);
+                    lunch_vals.fat += Math.round(ingredient.fat);
+                    lunch_vals.carbs += Math.round(ingredient.carbs);
 
                     if (first_passed == false) {
                         first_passed = true;
@@ -99,10 +99,10 @@ const ResultPage = () => {
                 dinner = result["dinner"]["meal"];
                 for(const index in result["dinner"]["ingredients"]) {
                     dinner_vals.cost += result.dinner.ingredients[index].cost_usd;
-                    dinner_vals.calories += result.dinner.ingredients[index].calories;
-                    dinner_vals.protein += result.dinner.ingredients[index].protein;
-                    dinner_vals.fat += result.dinner.ingredients[index].fat;
-                    dinner_vals.carbs += result.dinner.ingredients[index].carbs;
+                    dinner_vals.calories += Math.round(result.dinner.ingredients[index].calories);
+                    dinner_vals.protein += Math.round(result.dinner.ingredients[index].protein);
+                    dinner_vals.fat += Math.round(result.dinner.ingredients[index].fat);
+                    dinner_vals.carbs += Math.round(result.dinner.ingredients[index].carbs);
 
                     if (first_passed == false) {
                         first_passed = true;
