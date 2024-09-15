@@ -57,6 +57,7 @@ const ResultPage = () => {
 
                 lunch_ing = "ingredients: ";
                 lunch = result["lunch"]["meal"];
+                console.log(result["lunch"]["meal"]);
                 for(const index in result["lunch"]["ingredients"]) {
                     if (first_passed == false) {
                         first_passed = true;
@@ -68,8 +69,10 @@ const ResultPage = () => {
                     lunch_ing += ingredient;
                 }
                 first_passed = false;
+
                 dinner_ing = "ingredients: ";
                 dinner = result["dinner"]["meal"];
+                console.log(result["dinner"]["meal"]);
                 for(const index in result["dinner"]["ingredients"]) {
                     if (first_passed == false) {
                         first_passed = true;
@@ -158,9 +161,9 @@ const ResultPage = () => {
                 alignItems: 'center',
                 justifyContent: 'space-around',
             }}>
-            <MealCard dailymeal="Breakfast"/>
-            <MealCard dailymeal="Lunch"/>
-            <MealCard dailymeal="Dinner"/>
+            <MealCard dailymeal="breakfast"/>
+            <MealCard dailymeal="lunch"/>
+            <MealCard dailymeal="dinner"/>
             </div>
         </div>
     );
