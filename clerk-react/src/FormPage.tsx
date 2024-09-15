@@ -7,7 +7,6 @@ import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
 import axios from 'axios';
 
 // Our website Information Section
-// TODO: Delete info and add a title and catchprase underneath
 const items = [
     {
         icon: <ConstructionRoundedIcon sx={{ color: 'text.secondary' }} />,
@@ -68,7 +67,6 @@ const FormPage = () => {
           console.error('Error submitting data:', error);
         }
       };
-      
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', color: "gray" }}>
@@ -76,7 +74,7 @@ const FormPage = () => {
             <AppBar position="static" elevation={0} sx={{ bgcolor: '#2c3e50' }}>
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#ecf0f1' }}>
-                    <Button color="inherit" href="/" sx={{ color: '#ecf0f1' }}>Partial</Button>
+                        <Button color="inherit" href="/" sx={{ color: '#ecf0f1' }}>Partial</Button>
                     </Typography>
                     <Box sx={{ mr: 2 }}>
                         <Button color="inherit" component={Link} to="/about" sx={{ color: '#ecf0f1' }}>About Us</Button>
@@ -121,8 +119,9 @@ const FormPage = () => {
                                 maxWidth: 400,
                                 padding: 3,
                                 borderRadius: 1,
-                                boxShadow: '0 3px 5px 2px rgba(0, 0, 0, .1)',
-                                bgcolor: 'background.paper',
+                                boxShadow: '0 3px 5px 2px rgba(0, 0, 0, .2)',  // Updated shadow
+                                bgcolor: '#333',  // Dark background for form
+                                color: '#fff',  // White text color for form
                             }}
                             noValidate
                             autoComplete="off"
@@ -140,7 +139,7 @@ const FormPage = () => {
                                     value={formData[field]}
                                     onChange={handleChange}
                                     required={['age', 'height', 'currentWeight', 'goalWeight', 'budget'].includes(field)}
-                                    sx={{ mb: 2 }}
+                                    sx={{ mb: 2, input: { color: '#fff' }, label: { color: '#bbb' }, '& .MuiOutlinedInput-root': { '& fieldset': { borderColor: '#777' }, '&:hover fieldset': { borderColor: '#fff' } } }}  // Dark input styling
                                 />
                             ))}
                             <Button type="submit" variant="contained" color="primary">

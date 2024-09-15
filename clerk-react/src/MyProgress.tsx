@@ -94,7 +94,7 @@ const MyProgress: React.FC = () => {
         <Box sx={{ marginBottom: 5 }}>
           <Typography variant="h6" gutterBottom>
             General Takeaways:
-            <Typography>
+            <Typography align="center">
               Based on your weight goals, our ai predicts this is how your weight might change if you stick to the nutritioal plan tailored for you. 
             </Typography>
           </Typography>
@@ -111,7 +111,7 @@ const MyProgress: React.FC = () => {
         <Box sx={{ marginBottom: 5 }}>
           <Typography variant="h6" gutterBottom>
             General Takeaways:
-            <Typography>
+            <Typography align="center">
               Based on your budget, we estimate that on average you would be saving more than $12 weekly than if you were to not use the AI nutritional plan. 
             </Typography>
           </Typography>
