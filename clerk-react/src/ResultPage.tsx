@@ -48,7 +48,7 @@ const ResultPage = () => {
 
     useEffect(() => {
         async function update_text() {
-            get_meal_plan(budget, bmr + energy_cal + in_12_weeks, allergies, preferences).then((result: DailyMeals) => {
+            get_meal_plan(budget, bmr + energy_cal + in_12_weeks, "", preferences).then((result: DailyMeals) => {
                 console.log(result);
                 
                 breakfast_ing = "Ingredients: ";

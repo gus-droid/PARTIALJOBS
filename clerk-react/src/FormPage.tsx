@@ -35,7 +35,6 @@ type FormData = {
     currentWeight: string;
     goalWeight: string;
     budget: string;
-    allergies: string;
     dietaryRestrictions: string;
     [key: string]: string;
 };
@@ -48,7 +47,6 @@ const FormPage = () => {
         currentWeight: '',
         goalWeight: '',
         budget: '',
-        allergies: '',
         preferences: '',
     });
 
@@ -131,7 +129,7 @@ const FormPage = () => {
                             <Typography variant="h6" color="primary" gutterBottom>
                                 Enter Your Details
                             </Typography>
-                            {['age', 'height', 'currentWeight', 'goalWeight', 'budget', 'allergies', 'preferences'].map((field) => (
+                            {['age', 'height', 'currentWeight', 'goalWeight', 'budget', 'preferences'].map((field) => (
                                 <TextField
                                     key={field}
                                     label={field.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase())}
@@ -139,7 +137,7 @@ const FormPage = () => {
                                     name={field}
                                     value={formData[field]}
                                     onChange={handleChange}
-                                    required={['age', 'height', 'currentWeight', 'goalWeight', 'budget', 'allergies', 'preferences'].includes(field)}
+                                    required={['age', 'height', 'currentWeight', 'goalWeight', 'budget', 'preferences'].includes(field)}
                                     sx={{ mb: 2 }}
                                 />
                             ))}

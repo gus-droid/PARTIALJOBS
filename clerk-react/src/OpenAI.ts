@@ -74,26 +74,7 @@ Respond in the following: JSON format without talking and with no markdown, just
 
   const previous_data = chatCompletion_.choices[0].message.content;
 
-
-  const client2 = new OpenAI({
-    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-    dangerouslyAllowBrowser: true,
-  });
-  params = {
-    messages: [
-      {
-        role: "user",
-        content: `Please look through the following JSON, and make sure it doesn't contain any of these ingredients or has it in its name: ${negatives}. If you find any of these ingredients, it is imperative that you remove the ingredient. Please do not let this dish pass. These ingredients are allergies to people. Please take your time to review this JSON. Once you are done, please output the JSON as plain text. Don't speak, and don't include any markdown syntax.
-${previous_data}`
-      },
-    ],
-    model: "gpt-4o",
-  };
-
-  var newnew: OpenAI.Chat.ChatCompletion = await client2.chat.completions.create(params);
-
-
-  const data = JSON.parse(newnew.choices[0].message.content);
+  const data = JSON.parse(previous_data);
 
   // Correct data with NutritionNinja
   const times = ["breakfast", "lunch", "dinner"];
