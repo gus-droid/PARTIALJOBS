@@ -26,12 +26,12 @@ ChartJS.register(
 
 const MyProgress: React.FC = () => {
   // Sample data for weekly weight loss and savings
-  const weightLossData = {
+  const weightData = {
     labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
     datasets: [
       {
         label: 'Weight Loss (lbs)',
-        data: [2, 1.5, 3, 2.5], // Example data points
+        data: [0.5, 1, 1.5, 2], // Example data points
         borderColor: 'rgba(255, 99, 132, 1)',
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         tension: 0.3,
@@ -45,7 +45,7 @@ const MyProgress: React.FC = () => {
     datasets: [
       {
         label: 'Savings ($)',
-        data: [50, 70, 30, 90], // Example data points
+        data: [50, 60, 80, 95], // Example data points
         borderColor: 'rgba(54, 162, 235, 1)',
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
         tension: 0.3,
@@ -65,23 +65,17 @@ const MyProgress: React.FC = () => {
     <>
       {/* Navbar */}
       <AppBar position="static" elevation={0} sx={{ bgcolor: '#2c3e50' }}>
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#ecf0f1' }}>
-            Our Logo
-          </Typography>
-          <Box sx={{ mr: 2 }}>
-            <Button color="inherit" component={Link} to="/about" sx={{ color: '#ecf0f1' }}>
-              About Us
-            </Button>
-            <Button color="inherit" component={Link} to="/progress" sx={{ color: '#ecf0f1' }}>
-              My Progress
-            </Button>
-            <Button color="inherit" component={Link} to="/diet-plan" sx={{ color: '#ecf0f1' }}>
-              My Diet Plan
-            </Button>
-          </Box>
-        </Toolbar>
-      </AppBar>
+                <Toolbar>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#ecf0f1' }}>
+                    <Button color="inherit" href="/" sx={{ color: '#ecf0f1' }}>Partial</Button>
+                    </Typography>
+                    <Box sx={{ mr: 2 }}>
+                        <Button color="inherit" component={Link} to="/about" sx={{ color: '#ecf0f1' }}>About Us</Button>
+                        <Button color="inherit" component={Link} to="/progress" sx={{ color: '#ecf0f1' }}>My Progress</Button>
+                        <Button color="inherit" component={Link} to="/diet-plan" sx={{ color: '#ecf0f1' }}>My Diet Plan</Button>
+                    </Box>
+                </Toolbar>
+            </AppBar>
 
       {/* Line Graphs */}
       <Box sx={{ padding: 3 }}>
@@ -89,12 +83,21 @@ const MyProgress: React.FC = () => {
           My Progress
         </Typography>
 
-        {/* Weight Loss Chart */}
+        {/* Weight Chart */}
         <Box sx={{ marginBottom: 5 }}>
           <Typography variant="h6" gutterBottom>
-            Weekly Weight Loss
+            Weekly Weight
           </Typography>
-          <Line data={weightLossData} />
+          <Line data={weightData} />
+        </Box>
+
+        <Box sx={{ marginBottom: 5 }}>
+          <Typography variant="h6" gutterBottom>
+            General Takeaways:
+            <Typography>
+              Based on your weight goals, our ai predicts this is how your weight might change if you stick to the nutritioal plan tailored for you. 
+            </Typography>
+          </Typography>
         </Box>
 
         {/* Savings Chart */}
@@ -104,6 +107,18 @@ const MyProgress: React.FC = () => {
           </Typography>
           <Line data={savingsData} />
         </Box>
+
+        <Box sx={{ marginBottom: 5 }}>
+          <Typography variant="h6" gutterBottom>
+            General Takeaways:
+            <Typography>
+              Based on your budget, we estimate that on average you would be saving more than $12 weekly than if you were to not use the AI nutritional plan. 
+            </Typography>
+          </Typography>
+        </Box>
+
+
+
       </Box>
     </>
   );
