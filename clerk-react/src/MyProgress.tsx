@@ -31,7 +31,7 @@ const MyProgress: React.FC = () => {
     datasets: [
       {
         label: 'Weight Loss (lbs)',
-        data: [0.5, 1, 1.5, 2], // Example data points
+        data: [0.5, 0.9, 1.3, 2.3], // Example data points
         borderColor: 'rgba(255, 99, 132, 1)',
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         tension: 0.3,
@@ -116,9 +116,6 @@ const MyProgress: React.FC = () => {
             </Typography>
           </Typography>
         </Box>
-
-
-
       </Box>
     </>
   );
