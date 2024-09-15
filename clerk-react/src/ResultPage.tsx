@@ -35,6 +35,8 @@ const ResultPage = () => {
     const weight = parseFloat(formData["currentWeight"]);
     const target_weight = parseFloat(formData["goalWeight"]);
     const budget = parseFloat(formData["budget"]);
+    const allergies = parseFloat(formData["allergies"]);
+    const preferences = parseFloat(formData["preferences"]);
     const is_male = formData["sex"] == "male";
 
     const bmr: number = calculate_bmr(weight, height, age, is_male);
@@ -46,7 +48,7 @@ const ResultPage = () => {
 
     useEffect(() => {
         async function update_text() {
-            get_meal_plan(50, 40, 40, 40).then((result: DailyMeals) => {
+            get_meal_plan(budget, bmr + energy_cal + in_12_weeks, allergies, preferences).then((result: DailyMeals) => {
                 console.log(result);
                 
                 breakfast_ing = "Ingredients: ";

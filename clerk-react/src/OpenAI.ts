@@ -28,20 +28,26 @@ export interface DailyMeals {
 export async function get_meal_plan(
  
   daily_budget: number,
-  carbs: number,
-  protein: number,
-  fat: number,
+  calorie_target: number,
+  negatives: string,
+  preferences: string
 ): DailyMeals {
   const client = new OpenAI({
     apiKey: import.meta.env.VITE_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true,
   });
 
-  const params: OpenAI.Chat.ChatCompletionCreateParams = {
+  var params: OpenAI.Chat.ChatCompletionCreateParams = {
     messages: [
       {
         role: "user",
-        content: `I have ${daily_budget} dollars on food I can spend for today, and I need a daily caloric intake that needs to be exactly 1900 calories per day. Design 3 different meals that I can eat today that have at least ${protein} grams of protein, ${carbs} grams of carbs, and ${fat} grams of fat in total. List all ingredients used and their cost and calories. If you are unsure of a meal or ingredient's number, give a reasonable estimate. Respond in the following: JSON format without talking.
+        content: `I have ${daily_budget} dollars on food I can spend for today, and I need a daily caloric intake that needs to be near ${calorie_target} calories per day. List all ingredients used and their cost and calories. If you are unsure of a meal or ingredient's number, give a reasonable estimate. 
+
+In addition, please make accomodations to never include ${negatives} as ingredients. This is very serious, and it could cause the life or death of someone as these are allergies.
+
+However, please make accomodations to make sure you include ${preferences} as ingredients.
+
+Respond in the following: JSON format without talking and with no markdown, just plain text.
 
 { 
   "breakfast": {
@@ -61,12 +67,33 @@ export async function get_meal_plan(
 }`,
       },
     ],
-    model: "gpt-3.5-turbo",
+    model: "gpt-4o",
   };
-  const chatCompletion_: OpenAI.Chat.ChatCompletion =
+  var chatCompletion_: OpenAI.Chat.ChatCompletion =
     await client.chat.completions.create(params);
 
-  const data = JSON.parse(chatCompletion_.choices[0].message.content);
+  const previous_data = chatCompletion_.choices[0].message.content;
+
+
+  const client2 = new OpenAI({
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true,
+  });
+  params = {
+    messages: [
+      {
+        role: "user",
+        content: `Please look through the following JSON, and make sure it doesn't contain any of these ingredients or has it in its name: ${negatives}. If you find any of these ingredients, it is imperative that you remove the ingredient. Please do not let this dish pass. These ingredients are allergies to people. Please take your time to review this JSON. Once you are done, please output the JSON as plain text. Don't speak, and don't include any markdown syntax.
+${previous_data}`
+      },
+    ],
+    model: "gpt-4o",
+  };
+
+  var newnew: OpenAI.Chat.ChatCompletion = await client2.chat.completions.create(params);
+
+
+  const data = JSON.parse(newnew.choices[0].message.content);
 
   // Correct data with NutritionNinja
   const times = ["breakfast", "lunch", "dinner"];
