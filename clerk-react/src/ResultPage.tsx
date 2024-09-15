@@ -12,7 +12,7 @@ var dinner = "loading...";
 var breakfast_ing = "loading...";
 var lunch_ing = "loading...";
 var dinner_ing = "loading...";
-var text = "ingredients: ";
+var text = "Ingredients: ";
 var meal = "loading...";
 
 const ResultPage = () => {
@@ -38,7 +38,7 @@ const ResultPage = () => {
             get_meal_plan(40, 40, 40).then((result) => {
                 
                 console.log("running")
-                breakfast_ing = "ingredients: ";
+                breakfast_ing = "Ingredients: ";
                 
                 breakfast = result["breakfast"]["meal"];
                 console.log(result["breakfast"]["meal"]);
@@ -55,7 +55,7 @@ const ResultPage = () => {
                 }
                 first_passed = false;
 
-                lunch_ing = "ingredients: ";
+                lunch_ing = "Ingredients: ";
                 lunch = result["lunch"]["meal"];
                 console.log(result["lunch"]["meal"]);
                 for(const index in result["lunch"]["ingredients"]) {
@@ -70,7 +70,7 @@ const ResultPage = () => {
                 }
                 first_passed = false;
 
-                dinner_ing = "ingredients: ";
+                dinner_ing = "Ingredients: ";
                 dinner = result["dinner"]["meal"];
                 console.log(result["dinner"]["meal"]);
                 for(const index in result["dinner"]["ingredients"]) {
@@ -117,21 +117,22 @@ const ResultPage = () => {
                     direction="row"
                     sx={{ justifyContent: 'space-between', alignItems: 'center' }}
                     >
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h4" component="div">
                         {meal}
                     </Typography>
-                    <Typography gutterBottom variant="h6" component="div">
+                    <Typography gutterBottom variant="h5" component="div">
                         {prop.dailymeal}
                     </Typography>
                     </Stack>
-
-                    
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                         {text}
                     </Typography>
                 </Box>
                 <Divider />
                 <Box sx={{ p: 2 }}>
+                    <Typography gutterBottom variant="h6" component="div">
+                        Learn More
+                    </Typography>
                     <Stack direction="row" spacing={1}>
                     <Chip label="High in Protein" size="small" />
                     <Chip label="Filling" size="small" />
