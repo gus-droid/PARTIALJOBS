@@ -25,12 +25,12 @@ ChartJS.register(
 );
 
 const MyProgress: React.FC = () => {
-  // Sample data for weekly weight loss and savings
+  // Sample data for weekly weight and savings
   const weightData = {
     labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
     datasets: [
       {
-        label: 'Weight Loss (lbs)',
+        label: 'Weight (lbs)',
         data: [0.5, 0.9, 1.3, 2.3], // Example data points
         borderColor: 'rgba(255, 99, 132, 1)',
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -95,7 +95,7 @@ const MyProgress: React.FC = () => {
           <Typography variant="h6" gutterBottom>
             General Takeaways:
             <Typography align="center">
-              Based on your weight goals, our ai predicts this is how your weight might change if you stick to the nutritioal plan tailored for you. 
+              Based on your weight goals, our ai predicts this is how your weight might change if you stick to the nutritioal plan tailored for you. Due to an increase in protien consumption in this nutrional plan you can expect to gain body mass at the according rate shown above.
             </Typography>
           </Typography>
         </Box>
