@@ -15,6 +15,11 @@ export function calculate_bmr(weight: number, height: number, age: number, male:
     return Math.round(655.1 + (4.35 * weight) + (4.7 * height) - (4.7 * age));
 }
 
+// Calculate BMI
+export function calculate_bmi(weight: number, height: number): number {
+    return Math.round((weight / (height * height)) * 703);
+}
+
 // Calculate difference in calories from normal to lose x pounds per week.
 export function calorie_delta_goal(lbs_per_week: number): number {
     return Math.round((3500.0 / 7.0) * lbs_per_week);
