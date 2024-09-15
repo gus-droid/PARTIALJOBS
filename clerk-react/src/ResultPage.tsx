@@ -99,10 +99,10 @@ const ResultPage = () => {
     function MealCard(prop) {
 
         
-        if(prop.dailymeal == "breakfast") {
+        if(prop.dailymeal == "Breakfast") {
             text = breakfast_ing;
             meal = breakfast;
-        } else if(prop.dailymeal == "lunch") {
+        } else if(prop.dailymeal == "Lunch") {
             text = lunch_ing;
             meal = lunch;
         } else {
@@ -161,9 +161,9 @@ const ResultPage = () => {
                 alignItems: 'center',
                 justifyContent: 'space-around',
             }}>
-            <MealCard dailymeal="breakfast"/>
-            <MealCard dailymeal="lunch"/>
-            <MealCard dailymeal="dinner"/>
+            <MealCard dailymeal="Breakfast"/>
+            <MealCard dailymeal="Lunch"/>
+            <MealCard dailymeal="Dinner"/>
             </div>
         </div>
     );
