@@ -80,7 +80,7 @@ export async function get_meal_plan(carbs: number, protein: number, fat: number)
       ingredient.carbs = corrected_data.items[0].carbohydrates_total_g;
     }
   for(const index in data["lunch"]["ingredients"]) {
-    var ingredient = data.breakfast.ingredients[index];
+    var ingredient = data.lunch.ingredients[index];
       var ingredient_name = ingredient.name;
       var ingredient_amount = ingredient.quantity;
       var prompt = ingredient_amount + " of " + ingredient_name;
@@ -91,7 +91,7 @@ export async function get_meal_plan(carbs: number, protein: number, fat: number)
       ingredient.carbs = corrected_data.items[0].carbohydrates_total_g;
     }
   for(const index in data["dinner"]["ingredients"]) {
-    var ingredient = data.breakfast.ingredients[index];
+    var ingredient = data.dinner.ingredients[index];
       var ingredient_name = ingredient.name;
       var ingredient_amount = ingredient.quantity;
       var prompt = ingredient_amount + " of " + ingredient_name;
