@@ -13,7 +13,7 @@ const AboutUs: React.FC = () => {
           <Box sx={{ mr: 2 }}>
             <Button color="inherit" component={Link} to="/about" sx={{ color: '#ecf0f1' }}>About Us</Button>
             <Button color="inherit" component={Link} to="/progress" sx={{ color: '#ecf0f1' }}>My Progress</Button>
-            <Button color="inherit" component={Link} to="/diet-plan" sx={{ color: '#ecf0f1' }}>My Diet Plan</Button>
+            {/* <Button color="inherit" component={Link} to="/diet-plan" sx={{ color: '#ecf0f1' }}>My Diet Plan</Button> */}
           </Box>
         </Toolbar>
       </AppBar>
