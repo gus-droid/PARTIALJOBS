@@ -7,6 +7,7 @@ import Header from './Header';
 import AboutUs from './AboutUs';
 import MyDietPlan from './MyDietPlan';
 import MyProgress from './MyProgress';
+import CalendarPage from './calendarpage';
 
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -23,6 +24,7 @@ const App = () => {
         {/* FormPage can/was changed */}
         <Route path="/sign-in" element={<FormPage />} />
         <Route path="/about" element={<AboutUs />} />
+        <Route path="/calendar" element={<CalendarPage />} /> {/* New Route for Calendar */}
         <Route path="/progress" element={<MyProgress />} />
         <Route path="/diet-plan" element={<MyDietPlan />} />
         <Route path="/" element={

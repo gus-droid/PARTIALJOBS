@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 
 // Define the User schema
 const userSchema = new mongoose.Schema({
+  clerkUserId: String,
+  email: String,
   age: { type: String, required: true },  // You can change this to Number if necessary
   height: { type: String, required: true },
   currentWeight: { type: String, required: true },
