@@ -46,11 +46,11 @@ const ResultPage = () => {
                 for(const index in result["breakfast"]["ingredients"]) {
                     if (first_passed == false) {
                         first_passed = true;
-                        var ingredient = result.breakfast.ingredients[index];
+                        var ingredient = result.breakfast.ingredients[index].quantity + " " + result.breakfast.ingredients[index].name;
                         breakfast_ing += ingredient;
                         continue;
                     }
-                    ingredient = ", " + result.breakfast.ingredients[index];
+                    ingredient = ", " + result.breakfast.ingredients[index].quantity + " " + result.breakfast.ingredients[index].name;
                     breakfast_ing += ingredient;
                 }
                 first_passed = false;
@@ -60,11 +60,11 @@ const ResultPage = () => {
                 for(const index in result["lunch"]["ingredients"]) {
                     if (first_passed == false) {
                         first_passed = true;
-                        var ingredient = result.lunch.ingredients[index];
+                        ingredient = result.lunch.ingredients[index].quantity + " " + result.lunch.ingredients[index].name;
                         lunch_ing += ingredient;
                         continue;
                     }
-                    ingredient = ", " + result.lunch.ingredients[index];
+                    ingredient = ", " + result.lunch.ingredients[index].quantity + " " + result.lunch.ingredients[index].name;
                     lunch_ing += ingredient;
                 }
                 first_passed = false;
@@ -73,11 +73,11 @@ const ResultPage = () => {
                 for(const index in result["dinner"]["ingredients"]) {
                     if (first_passed == false) {
                         first_passed = true;
-                        var ingredient = result.dinner.ingredients[index];
+                        ingredient = result.dinner.ingredients[index].quantity + " " + result.dinner.ingredients[index].name;
                         dinner_ing += ingredient;
                         continue;
                     }
-                    ingredient = ", " + result.dinner.ingredients[index];
+                    ingredient = ", " + result.dinner.ingredients[index].quantity + " " + result.dinner.ingredients[index].name;
                     dinner_ing += ingredient;
                 }
 
