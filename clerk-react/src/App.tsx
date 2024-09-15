@@ -1,16 +1,34 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+// App.js - Simplified version
+import { Routes, Route } from 'react-router-dom';
+import { ClerkProvider } from '@clerk/clerk-react';
+import SignInPage from './SignInPage';
+import ProtectedRoute from './ProtectedRoute';
 import FormPage from './FormPage';
 import ResultPage from './ResultPage';
 
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+
+if (!PUBLISHABLE_KEY) {
+  throw new Error("Missing Publishable Key");
+}
+
 const App = () => {
   return (
-    <div>
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
       <Routes>
-        <Route path="/" element={<FormPage />} />
-        <Route path="/result" element={<ResultPage />} />
+        <Route path="/sign-in" element={<SignInPage />} />
+        <Route path="/" element={
+          <ProtectedRoute>
+            <FormPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/result" element={
+          <ProtectedRoute>
+            <ResultPage />
+          </ProtectedRoute>
+        } />
       </Routes>
-    </div>
+    </ClerkProvider>
   );
 };
 

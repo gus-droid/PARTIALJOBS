@@ -2,7 +2,6 @@ import { useLocation } from 'react-router-dom';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 import { ExerciseLevel, calculate_bmr, calorie_delta_goal, energy_delta } from './calorie_math';
 
-
 const ResultPage = () => {
     const location = useLocation();
     const formData = location.state as { [key: string]: string };
