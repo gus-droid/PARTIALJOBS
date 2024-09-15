@@ -35,7 +35,7 @@ const ResultPage = () => {
 
     useEffect(() => {
         async function update_text() {
-            get_meal_plan(40, 40, 40).then((result) => {
+            get_meal_plan(50, 40, 40, 40).then((result) => {
                 
                 console.log("running")
                 breakfast_ing = "Ingredients: ";
