@@ -16,7 +16,8 @@ const App = () => {
   return (
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
       <Routes>
-        <Route path="/sign-in" element={<SignInPage />} />
+        {/* FormPage can/was changed */}
+        <Route path="/sign-in" element={<FormPage />} />
         <Route path="/" element={
           <ProtectedRoute>
             <FormPage />
