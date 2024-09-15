@@ -143,30 +143,34 @@ const ResultPage = () => {
     }
 
     return (
-        <div>
-            <h1>Your Tailored Diet Plan</h1>
-            <p>Based on the information you provided, here's what we recommend:</p>
-            {/* Display results here */}
-            <SignedOut>
-                <SignInButton />
-            </SignedOut>
-            <SignedIn>
-                <UserButton />
-            </SignedIn>
-            <p>You burn {bmr} calories from doing nothing. You also burn {energy_cal} from moderate energy activites. This means you can eat {bmr + energy_cal} calories per day without any change in weight.</p>
-            <p>You will need a calorie deficit of {in_12_weeks} calories per day to lose {weight - target_weight} pounds in 12 weeks. This means that, if you want to lose weight, you should eat around {bmr + energy_cal + in_12_weeks} calories per day for 12 weeks to lose {weight - target_weight}</p>
-
-            <p>Oh yeah here some's GPT output: {switchval}</p>
-            <div style={{
+        <Box
+            sx={{
+                flexGrow: 1,
                 display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-around',
-            }}>
-            <MealCard dailymeal="Breakfast"/>
-            <MealCard dailymeal="Lunch"/>
-            <MealCard dailymeal="Dinner"/>
+                background: 'linear-gradient(135deg, #70e1f5 0%, #ffd194 100%)',
+                padding: 3,
+            }}
+        >
+            <div>
+                <h1>Your Tailored Diet Plan</h1>
+                <p>Based on the information you provided, here's what we recommend:</p>
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-around',
+                }}>
+                <MealCard dailymeal="Breakfast"/>
+                <MealCard dailymeal="Lunch"/>
+                <MealCard dailymeal="Dinner"/>
+                </div>
+                {/* Display results here */}
+                <p>You burn {bmr} calories from doing nothing. You also burn {energy_cal} from moderate energy activites. 
+                This means you can eat {bmr + energy_cal} calories per day without any change in weight.</p>
+                <p>You will need a calorie deficit of {in_12_weeks} calories per day to lose {weight - target_weight} pounds in 12 weeks. 
+                This means that, if you want to lose weight, you should eat around {bmr + energy_cal + in_12_weeks} calories per day for 12 weeks 
+                to lose {weight - target_weight} calories</p>
             </div>
-        </div>
+        </Box>
     );
 };
 
