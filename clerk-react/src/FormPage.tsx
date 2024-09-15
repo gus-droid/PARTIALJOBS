@@ -4,6 +4,7 @@ import { TextField, Button, Box, Typography, CssBaseline, Stack, AppBar, Toolbar
 import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
 import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
+import axios from 'axios';
 
 // Our website Information Section
 // TODO: Delete info and add a title and catchprase underneath
@@ -56,9 +57,20 @@ const FormPage = () => {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        navigate('/result', { state: formData });
+
+        try {
+            // Make a POST request to your back-end API to save user data
+            const response = await axios.post('http://localhost:5000/api/users/create', formData);
+
+            console.log('User data saved successfully:', response.data);
+
+            // Navigate to result page with the submitted data
+            navigate('/result', { state: formData });
+        } catch (error) {
+            console.error('Error submitting data:', error);
+        }
     };
 
     return (
