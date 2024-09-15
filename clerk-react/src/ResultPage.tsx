@@ -5,6 +5,16 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-reac
 import { ExerciseLevel, calculate_bmr, calorie_delta_goal, energy_delta } from './calorie_math';
 import {get_meal_plan} from './OpenAI';
 
+var first_passed = false;
+var breakfast = "loading...";
+var lunch = "loading...";
+var dinner = "loading...";
+var breakfast_ing = "loading...";
+var lunch_ing = "loading...";
+var dinner_ing = "loading...";
+var text = "ingredients: ";
+var meal = "loading...";
+
 const ResultPage = () => {
     const location = useLocation();
     const formData = location.state as { [key: string]: string };
@@ -20,42 +30,59 @@ const ResultPage = () => {
     const energy_cal: number = energy_delta(bmr, ExerciseLevel.Moderate);
     const in_12_weeks: number = calorie_delta_goal(-(weight - target_weight)/12);
 
-    const [test_chatgpt, setText] = useState("hehe");
+    
+    var [switchval, setSwitch] = useState(true);
 
     useEffect(() => {
         async function update_text() {
             get_meal_plan(40, 40, 40).then((result) => {
-                var builder_string = "";
-
-                builder_string += result["breakfast"]["meal"] + "\n";
-                builder_string += "Ingredients" + "\n";
+                
+                console.log("running")
+                breakfast_ing = "ingredients: ";
+                
+                breakfast = result["breakfast"]["meal"];
+                console.log(result["breakfast"]["meal"]);
+                console.log(breakfast);
                 for(const index in result["breakfast"]["ingredients"]) {
-                    var ingredient = result.breakfast.ingredients[index];
-                    console.log(ingredient);
-                    builder_string += ` * ${ingredient["name"]} Cal: ${ingredient.calories} kcal  Protein: ${ingredient.protein}g"\n`;
+                    if (first_passed == false) {
+                        first_passed = true;
+                        var ingredient = result.breakfast.ingredients[index];
+                        breakfast_ing += ingredient;
+                        continue;
+                    }
+                    ingredient = ", " + result.breakfast.ingredients[index];
+                    breakfast_ing += ingredient;
                 }
-                builder_string += "    \n";
+                first_passed = false;
 
-                builder_string += result["lunch"]["meal"] + "\n";
-                builder_string += "Ingredients" + "\n";
+                lunch_ing = "ingredients: ";
+                lunch = result["lunch"]["meal"];
                 for(const index in result["lunch"]["ingredients"]) {
-                    var ingredient = result.lunch.ingredients[index];
-                    console.log(ingredient);
-                    builder_string += ` * ${ingredient["name"]} Cal: ${ingredient.calories} kcal  Protein: ${ingredient.protein}g"\n`;
+                    if (first_passed == false) {
+                        first_passed = true;
+                        var ingredient = result.lunch.ingredients[index];
+                        lunch_ing += ingredient;
+                        continue;
+                    }
+                    ingredient = ", " + result.lunch.ingredients[index];
+                    lunch_ing += ingredient;
                 }
-                builder_string += "    \n";
-
-
-                builder_string += result["dinner"]["meal"] + "\n";
-                builder_string += "Ingredients" + "\n";
+                first_passed = false;
+                dinner_ing = "ingredients: ";
+                dinner = result["dinner"]["meal"];
                 for(const index in result["dinner"]["ingredients"]) {
-                    var ingredient = result.dinner.ingredients[index];
-                    console.log(ingredient);
-                    builder_string += ` * ${ingredient["name"]} Cal: ${ingredient.calories} kcal  Protein: ${ingredient.protein}g"\n`;
+                    if (first_passed == false) {
+                        first_passed = true;
+                        var ingredient = result.dinner.ingredients[index];
+                        dinner_ing += ingredient;
+                        continue;
+                    }
+                    ingredient = ", " + result.dinner.ingredients[index];
+                    dinner_ing += ingredient;
                 }
-                builder_string += "    \n";
 
-                setText( builder_string );
+                setSwitch(!switchval)
+
             }).catch((error) => {
                 console.error('Error:', error);
             });
@@ -65,7 +92,21 @@ const ResultPage = () => {
 
 
 
-    function MealCard() {
+
+    function MealCard(prop) {
+
+        
+        if(prop.dailymeal == "breakfast") {
+            text = breakfast_ing;
+            meal = breakfast;
+        } else if(prop.dailymeal == "lunch") {
+            text = lunch_ing;
+            meal = lunch;
+        } else {
+            text = dinner_ing;
+            meal = dinner;
+        }
+
         return ( 
             <Card variant="outlined" sx={{ maxWidth: 360 }}>
                 <Box sx={{ p: 2 }}>
@@ -74,21 +115,20 @@ const ResultPage = () => {
                     sx={{ justifyContent: 'space-between', alignItems: 'center' }}
                     >
                     <Typography gutterBottom variant="h5" component="div">
-                        Chicken and Rice
+                        {meal}
                     </Typography>
                     <Typography gutterBottom variant="h6" component="div">
-                        600 Calories
+                        {prop.dailymeal}
                     </Typography>
                     </Stack>
+
+                    
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                    Succulent poached white chicken cut into bite-size pieces and served on fragrant rice with some light soy sauce
+                        {text}
                     </Typography>
                 </Box>
                 <Divider />
                 <Box sx={{ p: 2 }}>
-                    {/* <Typography gutterBottom variant="body2">
-                    Select type
-                    </Typography> */}
                     <Stack direction="row" spacing={1}>
                     <Chip label="High in Protein" size="small" />
                     <Chip label="Filling" size="small" />
@@ -112,8 +152,16 @@ const ResultPage = () => {
             <p>You burn {bmr} calories from doing nothing. You also burn {energy_cal} from moderate energy activites. This means you can eat {bmr + energy_cal} calories per day without any change in weight.</p>
             <p>You will need a calorie deficit of {in_12_weeks} calories per day to lose {weight - target_weight} pounds in 12 weeks. This means that, if you want to lose weight, you should eat around {bmr + energy_cal + in_12_weeks} calories per day for 12 weeks to lose {weight - target_weight}</p>
 
-            <p>Oh yeah here some's GPT output: {test_chatgpt}</p>
-            <MealCard />
+            <p>Oh yeah here some's GPT output: {switchval}</p>
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-around',
+            }}>
+            <MealCard dailymeal="Breakfast"/>
+            <MealCard dailymeal="Lunch"/>
+            <MealCard dailymeal="Dinner"/>
+            </div>
         </div>
     );
 };
