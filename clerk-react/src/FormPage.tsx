@@ -6,6 +6,7 @@ import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
 import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
 
 // Our website Information Section
+// TODO: Delete info and add a title and catchprase underneath
 const items = [
     {
         icon: <ConstructionRoundedIcon sx={{ color: 'text.secondary' }} />,
@@ -66,7 +67,7 @@ const FormPage = () => {
             <AppBar position="static" elevation={0} sx={{ bgcolor: '#2c3e50' }}>
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#ecf0f1' }}>
-                        Our Logo
+                    <Button color="inherit" href="/" sx={{ color: '#ecf0f1' }}>PartialJobs</Button>
                     </Typography>
                     <Box sx={{ mr: 2 }}>
                         <Button color="inherit" component={Link} to="/about" sx={{ color: '#ecf0f1' }}>About Us</Button>
