@@ -79,18 +79,34 @@ Respond in the following: JSON format without talking and with no markdown, just
   // Correct data with NutritionNinja
   const times = ["breakfast", "lunch", "dinner"];
 
+        var total_calories = 0;
+        for (const index in data["lunch"]["ingredients"]) {
+            var ingredient = data["lunch"].ingredients[index];
+            total_calories += ingredient.calories;
+        }
+        for (const index in data["breakfast"]["ingredients"]) {
+            var ingredient = data["breakfast"].ingredients[index];
+            total_calories += ingredient.calories;
+        }
+        for (const index in data["dinner"]["ingredients"]) {
+            var ingredient = data["dinner"].ingredients[index];
+            total_calories += ingredient.calories;
+        }
+        var static_mult = calorie_target / total_calories;
+
     for (const index in data["breakfast"]["ingredients"]) {
-    var ingredient = data["breakfast"].ingredients[index];
-    var ingredient_name = ingredient.name;
-    var ingredient_amount = ingredient.quantity;
-    var prompt = ingredient_amount + " of " + ingredient_name;
+        var ingredient = data["breakfast"].ingredients[index];
+        var ingredient_name = ingredient.name;
+        var ingredient_amount = ingredient.quantity;
+        var prompt = ingredient_amount + " of " + ingredient_name;
 
-    var corrected_data = await fetchNutritionData(prompt);
-    ingredient.protein = corrected_data.items[0].protein_g;
-    ingredient.fat = corrected_data.items[0].fat_total_g;
-    ingredient.carbs = corrected_data.items[0].carbohydrates_total_g;
-
+    var corrected_data = await fetchNutritionData(prompt); ingredient.calories = ingredient.calories * static_mult;
+    ingredient.cost_usd = Math.round(ingredient.cost_usd * static_mult, 2);
+    ingredient.protein = corrected_data.items[0].protein_g * static_mult;
+    ingredient.fat = corrected_data.items[0].fat_total_g * static_mult;
+    ingredient.carbs = corrected_data.items[0].carbohydrates_total_g * static_mult;
     }
+
 
 
     for (const index in data["lunch"]["ingredients"]) {
@@ -100,9 +116,11 @@ Respond in the following: JSON format without talking and with no markdown, just
     var prompt = ingredient_amount + " of " + ingredient_name;
 
     var corrected_data = await fetchNutritionData(prompt);
-    ingredient.protein = corrected_data.items[0].protein_g;
-    ingredient.fat = corrected_data.items[0].fat_total_g;
-    ingredient.carbs = corrected_data.items[0].carbohydrates_total_g;
+    ingredient.cost_usd = Math.round(ingredient.cost_usd * static_mult, 2);
+    ingredient.calories = ingredient.calories * static_mult;
+    ingredient.protein = corrected_data.items[0].protein_g * static_mult;
+    ingredient.fat = corrected_data.items[0].fat_total_g * static_mult;
+    ingredient.carbs = corrected_data.items[0].carbohydrates_total_g * static_mult;
 
     }
 
@@ -114,9 +132,11 @@ Respond in the following: JSON format without talking and with no markdown, just
         var prompt = ingredient_amount + " of " + ingredient_name;
 
         var corrected_data = await fetchNutritionData(prompt);
-        ingredient.protein = corrected_data.items[0].protein_g;
-        ingredient.fat = corrected_data.items[0].fat_total_g;
-        ingredient.carbs = corrected_data.items[0].carbohydrates_total_g;
+        ingredient.cost_usd = Math.round(ingredient.cost_usd * static_mult, 2);
+        ingredient.calories = ingredient.calories * static_mult;
+        ingredient.protein = corrected_data.items[0].protein_g * static_mult;
+        ingredient.fat = corrected_data.items[0].fat_total_g * static_mult;
+        ingredient.carbs = corrected_data.items[0].carbohydrates_total_g * static_mult;
 
     }
 
