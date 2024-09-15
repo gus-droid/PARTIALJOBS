@@ -8,7 +8,7 @@ const AboutUs: React.FC = () => {
       <AppBar position="static" elevation={0} sx={{ bgcolor: '#2c3e50' }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#ecf0f1' }}>
-            <Button color="inherit" href="/" sx={{ color: '#ecf0f1' }}>PartialJobs</Button>
+            <Button color="inherit" href="/" sx={{ color: '#ecf0f1' }}>Partial</Button>
           </Typography>
           <Box sx={{ mr: 2 }}>
             <Button color="inherit" component={Link} to="/about" sx={{ color: '#ecf0f1' }}>About Us</Button>
