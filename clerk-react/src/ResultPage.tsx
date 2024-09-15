@@ -12,8 +12,19 @@ var dinner = "loading...";
 var breakfast_ing = "loading...";
 var lunch_ing = "loading...";
 var dinner_ing = "loading...";
-var text = "Ingredients: ";
-var meal = "loading...";
+// var text = "Ingredients: ";
+// var meal = "loading...";
+interface meal_vals {
+    cost: number,
+    calories: number,
+    protein: number,
+    fat: number,
+    carbs: number
+};
+
+var breakfast_vals : meal_vals = {cost: 0, calories: 0, protein: 0, fat: 0, carbs: 0};
+var lunch_vals : meal_vals = {cost: 0, calories: 0, protein: 0, fat: 0, carbs: 0};
+var dinner_vals : meal_vals = {cost: 0, calories: 0, protein: 0, fat: 0, carbs: 0}; 
 
 const ResultPage = () => {
     const location = useLocation();
@@ -41,9 +52,13 @@ const ResultPage = () => {
                 breakfast_ing = "Ingredients: ";
                 
                 breakfast = result["breakfast"]["meal"];
-                console.log(result["breakfast"]["meal"]);
-                console.log(breakfast);
                 for(const index in result["breakfast"]["ingredients"]) {
+                    breakfast_vals.cost += result.breakfast.ingredients[index].cost_usd;
+                    breakfast_vals.calories += result.breakfast.ingredients[index].calories;
+                    breakfast_vals.protein += result.breakfast.ingredients[index].protein;
+                    breakfast_vals.fat += result.breakfast.ingredients[index].fat;
+                    breakfast_vals.carbs += result.breakfast.ingredients[index].carbs;
+
                     if (first_passed == false) {
                         first_passed = true;
                         var ingredient = result.breakfast.ingredients[index].quantity + " " + result.breakfast.ingredients[index].name;
@@ -57,8 +72,13 @@ const ResultPage = () => {
 
                 lunch_ing = "Ingredients: ";
                 lunch = result["lunch"]["meal"];
-                console.log(result["lunch"]["meal"]);
                 for(const index in result["lunch"]["ingredients"]) {
+                    lunch_vals.cost += result.lunch.ingredients[index].cost_usd;
+                    lunch_vals.calories += result.lunch.ingredients[index].calories;
+                    lunch_vals.protein += result.lunch.ingredients[index].protein;
+                    lunch_vals.fat += result.lunch.ingredients[index].fat;
+                    lunch_vals.carbs += result.lunch.ingredients[index].carbs;
+
                     if (first_passed == false) {
                         first_passed = true;
                         ingredient = result.lunch.ingredients[index].quantity + " " + result.lunch.ingredients[index].name;
@@ -72,8 +92,13 @@ const ResultPage = () => {
 
                 dinner_ing = "Ingredients: ";
                 dinner = result["dinner"]["meal"];
-                console.log(result["dinner"]["meal"]);
                 for(const index in result["dinner"]["ingredients"]) {
+                    dinner_vals.cost += result.dinner.ingredients[index].cost_usd;
+                    dinner_vals.calories += result.dinner.ingredients[index].calories;
+                    dinner_vals.protein += result.dinner.ingredients[index].protein;
+                    dinner_vals.fat += result.dinner.ingredients[index].fat;
+                    dinner_vals.carbs += result.dinner.ingredients[index].carbs;
+
                     if (first_passed == false) {
                         first_passed = true;
                         ingredient = result.dinner.ingredients[index].quantity + " " + result.dinner.ingredients[index].name;
@@ -100,14 +125,29 @@ const ResultPage = () => {
 
         
         if(prop.dailymeal == "Breakfast") {
-            text = breakfast_ing;
-            meal = breakfast;
+            var text = breakfast_ing;
+            var meal = breakfast;
+            var cost = breakfast_vals.cost;
+            var calories = breakfast_vals.calories;
+            var protein = breakfast_vals.protein;
+            var fat = breakfast_vals.fat;
+            var carbs = breakfast_vals.carbs;
         } else if(prop.dailymeal == "Lunch") {
             text = lunch_ing;
             meal = lunch;
+            cost = lunch_vals.cost;
+            calories = lunch_vals.calories;
+            protein = lunch_vals.protein;
+            fat = lunch_vals.fat;
+            carbs = lunch_vals.carbs;
         } else {
             text = dinner_ing;
             meal = dinner;
+            cost = dinner_vals.cost;
+            calories = dinner_vals.calories;
+            protein = dinner_vals.protein;
+            fat = dinner_vals.fat;
+            carbs = dinner_vals.carbs;
         }
 
         return ( 
@@ -117,12 +157,14 @@ const ResultPage = () => {
                     direction="row"
                     sx={{ justifyContent: 'space-between', alignItems: 'center' }}
                     >
-                    <Typography gutterBottom variant="h4" component="div">
-                        {meal}
-                    </Typography>
-                    <Typography gutterBottom variant="h5" component="div">
-                        {prop.dailymeal}
-                    </Typography>
+                    <Stack direction="column">
+                        <Typography variant="h5" gutterBottom>
+                            {meal}
+                        </Typography>
+                        <Typography variant="h6" gutterBottom>
+                            {prop.dailymeal}
+                        </Typography>
+                    </Stack>
                     </Stack>
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                         {text}
@@ -131,11 +173,14 @@ const ResultPage = () => {
                 <Divider />
                 <Box sx={{ p: 2 }}>
                     <Typography gutterBottom variant="h6" component="div">
-                        Learn More
+                        Learn More:
                     </Typography>
-                    <Stack direction="row" spacing={1}>
-                    <Chip label="High in Protein" size="small" />
-                    <Chip label="Filling" size="small" />
+                    <Stack direction="column" spacing={1}>
+                        <p>Cost: {cost} Dollars</p>
+                        <p>Calories: {calories} Calories</p>
+                        <p>Protein: {protein} g</p>
+                        <p>Fat: {fat} g</p>
+                        <p>Carbs: {carbs} g</p>
                     </Stack>
                 </Box>
             </Card>
