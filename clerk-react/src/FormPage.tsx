@@ -47,6 +47,7 @@ const FormPage = () => {
         goalWeight: '',
         budget: '',
         preferences: '',
+        weeks: '',
     });
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -128,7 +129,7 @@ const FormPage = () => {
                             <Typography variant="h6" color="primary" gutterBottom>
                                 Enter Your Details
                             </Typography>
-                            {['age', 'height', 'currentWeight', 'goalWeight', 'budget', 'preferences'].map((field) => (
+                            {['age', 'height', 'currentWeight', 'goalWeight', 'budget', 'preferences', 'weeks'].map((field) => (
                                 <TextField
                                     key={field}
                                     label={field.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase())}
@@ -136,7 +137,7 @@ const FormPage = () => {
                                     name={field}
                                     value={formData[field]}
                                     onChange={handleChange}
-                                    required={['age', 'height', 'currentWeight', 'goalWeight', 'budget', 'preferences'].includes(field)}
+                                    required={['age', 'height', 'currentWeight', 'goalWeight', 'budget', 'preferences', 'weeks'].includes(field)}
                                     sx={{ mb: 2 }}
                                 />
                             ))}

@@ -37,12 +37,13 @@ const ResultPage = () => {
     const budget = parseFloat(formData["budget"]);
     const allergies = parseFloat(formData["allergies"]);
     const preferences = parseFloat(formData["preferences"]);
+    const weeks = parseFloat(formData["weeks"]);
     const is_male = formData["sex"] == "male";
 
     const bmr: number = calculate_bmr(weight, height, age, is_male);
     const target_bmi = calculate_bmi(target_weight, height);
     const energy_cal: number = energy_delta(bmr, ExerciseLevel.Moderate);
-    const in_12_weeks: number = calorie_delta_goal(-(weight - target_weight)/12);
+    const in_12_weeks: number = calorie_delta_goal(-(weight - target_weight)/weeks);
 
     
     var [switchval, setSwitch] = useState(true);
@@ -216,8 +217,8 @@ const ResultPage = () => {
                 {/* Display results here */}
                 <p>You burn {bmr} calories from doing nothing. You also burn {energy_cal} from moderate energy activites. 
                 This means you can eat {bmr + energy_cal} calories per day without any change in weight.</p>
-                <p>You will need a calorie deficit of {in_12_weeks} calories per day to lose {weight - target_weight} pounds in 12 weeks. 
-                This means that, if you want to lose weight, you should eat around {bmr + energy_cal + in_12_weeks} calories per day for 12 weeks 
+                <p>You will need a calorie deficit of {in_12_weeks} calories per day to lose {weight - target_weight} pounds in {weeks} weeks. 
+                This means that, if you want to lose weight, you should eat around {bmr + energy_cal + in_12_weeks} calories per day for {weeks} weeks 
                 to lose {weight - target_weight} calories. Your target BMI is {target_bmi}, and a helthy BMI is considered to be between 18.5
                 and 24.9.</p>
             </div>
