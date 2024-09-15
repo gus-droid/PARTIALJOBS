@@ -4,6 +4,9 @@ import { ClerkProvider } from '@clerk/clerk-react';
 import FormPage from './FormPage';
 import ResultPage from './ResultPage';
 import Header from './Header';
+import AboutUs from './AboutUs';
+import MyDietPlan from './MyDietPlan';
+import MyProgress from './MyProgress';
 
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -19,6 +22,9 @@ const App = () => {
       <Routes>
         {/* FormPage can/was changed */}
         <Route path="/sign-in" element={<FormPage />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/progress" element={<MyProgress />} />
+        <Route path="/diet-plan" element={<MyDietPlan />} />
         <Route path="/" element={
           <FormPage />
         } />

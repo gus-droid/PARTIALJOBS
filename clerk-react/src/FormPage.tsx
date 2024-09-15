@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { TextField, Button, Box, Typography, CssBaseline, Stack } from '@mui/material';
-import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
+import { useNavigate, Link } from 'react-router-dom';
+import { TextField, Button, Box, Typography, CssBaseline, Stack, AppBar, Toolbar } from '@mui/material';
 import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
-import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
+import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
 
 // Our website Information Section
 const items = [
-    {
-        icon: <SettingsSuggestRoundedIcon sx={{ color: 'text.secondary' }} />,
-        title: 'Our Mission: Personalized Nutrition, Simplified',
-        description:
-            'At our core, we believe that achieving your fitness goals shouldn\'t be complicated. Whether you\'re looking to bulk up, lose weight, or maintain a balanced lifestyle, we simplify nutrition planning by creating personalized meal plans within your budget. With the help of AI, and innovative technologies like Clerk and Convex, we empower you to reach your goals with ease.',
-    },
     {
         icon: <ConstructionRoundedIcon sx={{ color: 'text.secondary' }} />,
         title: 'How It Works',
@@ -24,13 +17,13 @@ const items = [
         icon: <ThumbUpAltRoundedIcon sx={{ color: 'text.secondary' }} />,
         title: 'Seamless User Experience',
         description:
-            'Integrate our platform into your daily routine with ease. The intuitive design allows you to effortlessly input your data, track your progress, and adjust your goals. We’re here to make your journey as smooth and straightforward as possible—because focusing on your fitness should never feel like a chore.',
+            'Integrate our platform into your daily routine with ease. The intuitive design allows you to effortlessly input your data, track your progress, and adjust your goals. We\'re here to make your journey as smooth and straightforward as possible—because focusing on your fitness should never feel like a chore.',
     },
     {
         icon: <AutoFixHighRoundedIcon sx={{ color: 'text.secondary' }} />,
         title: 'Innovative Functionality',
         description:
-            'Stay ahead with cutting-edge features that evolve with your needs. Our system is built to provide real-time meal recommendations based on your fitness journey and budget, with constant updates to ensure you’re always working with the latest nutritional insights.',
+            'Stay ahead with cutting-edge features that evolve with your needs. Our system is built to provide real-time meal recommendations based on your fitness journey and budget, with constant updates to ensure you\'re always working with the latest nutritional insights.',
     },
 ];
 
@@ -68,97 +61,115 @@ const FormPage = () => {
     };
 
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                height: '100vh',
-                width: '100vw',
-                margin: 0,
-                padding: 0,
-                background: 'linear-gradient(135deg, #70e1f5 0%, #ffd194 100%)', // Single gradient for entire background
-            }}
-        >
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', color: "gray" }}>
             <CssBaseline />
-            {/* Left Side of Sign-up form */}
+            <AppBar position="static" elevation={0} sx={{ bgcolor: '#2c3e50' }}>
+                <Toolbar>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#ecf0f1' }}>
+                        Our Logo
+                    </Typography>
+                    <Box sx={{ mr: 2 }}>
+                        <Button color="inherit" component={Link} to="/about" sx={{ color: '#ecf0f1' }}>About Us</Button>
+                        <Button color="inherit" component={Link} to="/progress" sx={{ color: '#ecf0f1' }}>My Progress</Button>
+                        <Button color="inherit" component={Link} to="/diet-plan" sx={{ color: '#ecf0f1' }}>My Diet Plan</Button>
+                    </Box>
+                </Toolbar>
+            </AppBar>
+
             <Box
                 sx={{
-                    width: '50%',
+                    flexGrow: 1,
                     display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    p: 4,
-                    background: 'transparent', // Transparent to let parent gradient show
+                    background: 'linear-gradient(135deg, #70e1f5 0%, #ffd194 100%)',
+                    padding: 3,
                 }}
             >
                 <Box
-                    component="form"
                     sx={{
                         display: 'flex',
-                        flexDirection: 'column',
                         width: '100%',
-                        maxWidth: 400,
-                        padding: 3,
-                        borderRadius: 1,
-                        boxShadow: '0 3px 5px 2px rgba(0, 0, 0, .3)',
-                        bgcolor: 'background.paper',
-                    }}
-                    noValidate
-                    autoComplete="off"
-                    onSubmit={handleSubmit}
-                >
-                    <Typography variant="h6" color="primary" gutterBottom>
-                        Enter Your Details
-                    </Typography>
-                    {['age', 'height', 'currentWeight', 'goalWeight', 'budget', 'allergies', 'dietaryRestrictions'].map((field) => (
-                        <TextField
-                            key={field}
-                            label={field.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase())}
-                            variant="outlined"
-                            name={field}
-                            value={formData[field]}
-                            onChange={handleChange}
-                            required={['age', 'height', 'currentWeight', 'goalWeight', 'budget'].includes(field)}
-                            sx={{ mb: 2 }}
-                        />
-                    ))}
-                    <Button type="submit" variant="contained" color="primary">
-                        Submit
-                    </Button>
-                </Box>
-            </Box>
-
-            {/* Right: Information Section */}
-            <Box
-                sx={{
-                    width: '50%', // Other half of the screen
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    p: 4,
-                    background: 'transparent', // Transparent to let parent gradient show
-                }}
-            >
-                <Stack
-                    sx={{
-                        flexDirection: 'column',
+                        maxWidth: 1200,
+                        margin: '0 auto',
                         gap: 4,
-                        maxWidth: 450,
                     }}
                 >
-                    {items.map((item, index) => (
-                        <Stack key={index} direction="row" sx={{ gap: 2 }}>
-                            {item.icon}
-                            <Box>
-                                <Typography gutterBottom sx={{ fontWeight: 'medium' }}>
-                                    {item.title}
-                                </Typography>
-                                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                    {item.description}
-                                </Typography>
-                            </Box>
+                    {/* Left Side: Sign-up form */}
+                    <Box
+                        sx={{
+                            flex: 1,
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
+                        }}
+                    >
+                        <Box
+                            component="form"
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                width: '100%',
+                                maxWidth: 400,
+                                padding: 3,
+                                borderRadius: 1,
+                                boxShadow: '0 3px 5px 2px rgba(0, 0, 0, .1)',
+                                bgcolor: 'background.paper',
+                            }}
+                            noValidate
+                            autoComplete="off"
+                            onSubmit={handleSubmit}
+                        >
+                            <Typography variant="h6" color="primary" gutterBottom>
+                                Enter Your Details
+                            </Typography>
+                            {['age', 'height', 'currentWeight', 'goalWeight', 'budget', 'allergies', 'dietaryRestrictions'].map((field) => (
+                                <TextField
+                                    key={field}
+                                    label={field.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase())}
+                                    variant="outlined"
+                                    name={field}
+                                    value={formData[field]}
+                                    onChange={handleChange}
+                                    required={['age', 'height', 'currentWeight', 'goalWeight', 'budget'].includes(field)}
+                                    sx={{ mb: 2 }}
+                                />
+                            ))}
+                            <Button type="submit" variant="contained" color="primary">
+                                Submit
+                            </Button>
+                        </Box>
+                    </Box>
+
+                    {/* Right: Information Section */}
+                    <Box
+                        sx={{
+                            flex: 1,
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
+                        }}
+                    >
+                        <Stack
+                            sx={{
+                                flexDirection: 'column',
+                                gap: 4,
+                            }}
+                        >
+                            {items.map((item, index) => (
+                                <Stack key={index} direction="row" sx={{ gap: 2 }}>
+                                    {item.icon}
+                                    <Box>
+                                        <Typography gutterBottom sx={{ fontWeight: 'medium' }}>
+                                            {item.title}
+                                        </Typography>
+                                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                            {item.description}
+                                        </Typography>
+                                    </Box>
+                                </Stack>
+                            ))}
                         </Stack>
-                    ))}
-                </Stack>
+                    </Box>
+                </Box>
             </Box>
         </Box>
     );
