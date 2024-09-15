@@ -6,6 +6,7 @@ import ProtectedRoute from './ProtectedRoute';
 import FormPage from './FormPage';
 import ResultPage from './ResultPage';
 
+
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 if (!PUBLISHABLE_KEY) {
