@@ -41,7 +41,7 @@ export async function get_meal_plan(carbs: number, protein: number, fat: number)
   });
 
   const params: OpenAI.Chat.ChatCompletionCreateParams = {
-    messages: [{ role: 'user', content: `I have 15 dollars on food I can spend for today, and I need a daily caloric intake that needs to be exactly 1900 calories per day. Design meals that I can eat today that have at least ${protein} grams of protein in total. List all ingredients used and their cost and calories. If you are unsure of a meal or ingredient's number, give a reasonable estimate. Respond in the following: JSON format without talking.
+    messages: [{ role: 'user', content: `I have 60 dollars on food I can spend for today, and I need a daily caloric intake that needs to be exactly 1900 calories per day. Design 3 different meals that I can eat today that have at least ${protein} grams of protein in total. List all ingredients used and their cost and calories. If you are unsure of a meal or ingredient's number, give a reasonable estimate. Respond in the following: JSON format without talking.
 
 { 
   "breakfast": {
@@ -66,9 +66,32 @@ export async function get_meal_plan(carbs: number, protein: number, fat: number)
 
   const data = JSON.parse(chatCompletion_.choices[0].message.content);
 
+
   // Correct data with NutritionNinja
   for(const index in data["breakfast"]["ingredients"]) {
     var ingredient = data.breakfast.ingredients[index];
+      var ingredient_name = ingredient.name;
+      var ingredient_amount = ingredient.quantity;
+      var prompt = ingredient_amount + " of " + ingredient_name;
+
+      var corrected_data = await fetchNutritionData(prompt);
+      ingredient.protein = corrected_data.items[0].protein_g;
+      ingredient.fat = corrected_data.items[0].fat_total_g;
+      ingredient.carbs = corrected_data.items[0].carbohydrates_total_g;
+    }
+  for(const index in data["lunch"]["ingredients"]) {
+    var ingredient = data.lunch.ingredients[index];
+      var ingredient_name = ingredient.name;
+      var ingredient_amount = ingredient.quantity;
+      var prompt = ingredient_amount + " of " + ingredient_name;
+
+      var corrected_data = await fetchNutritionData(prompt);
+      ingredient.protein = corrected_data.items[0].protein_g;
+      ingredient.fat = corrected_data.items[0].fat_total_g;
+      ingredient.carbs = corrected_data.items[0].carbohydrates_total_g;
+    }
+  for(const index in data["dinner"]["ingredients"]) {
+    var ingredient = data.dinner.ingredients[index];
       var ingredient_name = ingredient.name;
       var ingredient_amount = ingredient.quantity;
       var prompt = ingredient_amount + " of " + ingredient_name;
