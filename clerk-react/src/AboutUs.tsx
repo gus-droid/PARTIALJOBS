@@ -46,10 +46,10 @@ const AboutUs: React.FC = () => {
         </Grid>
         <Grid container spacing={4} sx={{ mt: 4 }}>
           <Grid item xs={12} md={6}>
-            <img src="path_to_image1.jpg" alt="Mission" style={{ width: '100%', borderRadius: '8px' }} />
+            <img src="https://i.pinimg.com/736x/a1/9b/16/a19b1645a2b9aecbca4f7b276dc32b7c.jpg" alt="Mission" style={{ width: '100%', borderRadius: '8px' }} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <img src="path_to_image2.jpg" alt="Works" style={{ width: '100%', borderRadius: '8px' }} />
+            <img src="https://www.perfectdiettracker.com/support/wp-content/uploads/2020/03/media_1238433334135.png" alt="Works" style={{ width: '100%', borderRadius: '8px' }} />
           </Grid>
         </Grid>
       </Container>
