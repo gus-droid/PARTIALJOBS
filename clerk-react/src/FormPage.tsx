@@ -59,19 +59,16 @@ const FormPage = () => {
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-
+      
         try {
-            // Make a POST request to your back-end API to save user data
-            const response = await axios.post('http://localhost:5000/api/users/create', formData);
-
-            console.log('User data saved successfully:', response.data);
-
-            // Navigate to result page with the submitted data
-            navigate('/result', { state: formData });
+          const response = await axios.post('http://localhost:5000/api/users/create', formData);  // Ensure the URL is correct
+          console.log('User created:', response.data);
+          navigate('/result', { state: formData });
         } catch (error) {
-            console.error('Error submitting data:', error);
+          console.error('Error submitting data:', error);
         }
-    };
+      };
+      
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', color: "gray" }}>
