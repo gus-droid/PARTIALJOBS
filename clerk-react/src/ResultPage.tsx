@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Card, TextField, Button, Box, Typography, CssBaseline, Chip, Stack, Divider } from '@mui/material';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 import { ExerciseLevel, calculate_bmr, calorie_delta_goal, energy_delta } from './calorie_math';
 import {chatCompletion} from './OpenAI';
@@ -35,6 +36,39 @@ const ResultPage = () => {
         console.log(test_chatgpt);
     }, []);
 
+    function MealCard() {
+        return ( 
+            <Card variant="outlined" sx={{ maxWidth: 360 }}>
+                <Box sx={{ p: 2 }}>
+                    <Stack
+                    direction="row"
+                    sx={{ justifyContent: 'space-between', alignItems: 'center' }}
+                    >
+                    <Typography gutterBottom variant="h5" component="div">
+                        Chicken and Rice
+                    </Typography>
+                    <Typography gutterBottom variant="h6" component="div">
+                        600 Calories
+                    </Typography>
+                    </Stack>
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    Succulent poached white chicken cut into bite-size pieces and served on fragrant rice with some light soy sauce
+                    </Typography>
+                </Box>
+                <Divider />
+                <Box sx={{ p: 2 }}>
+                    {/* <Typography gutterBottom variant="body2">
+                    Select type
+                    </Typography> */}
+                    <Stack direction="row" spacing={1}>
+                    <Chip label="High in Protein" size="small" />
+                    <Chip label="Filling" size="small" />
+                    </Stack>
+                </Box>
+            </Card>
+        );
+    }
+
     return (
         <div>
             <h1>Your Tailored Diet Plan</h1>
@@ -50,6 +84,7 @@ const ResultPage = () => {
             <p>You will need a calorie deficit of {in_12_weeks} calories per day to lose {weight - target_weight} pounds in 12 weeks. This means that, if you want to lose weight, you should eat around {bmr + energy_cal + in_12_weeks} calories per day for 12 weeks to lose {weight - target_weight}</p>
 
             <p>Oh yeah here some's GPT output: {test_chatgpt}</p>
+            <MealCard />
         </div>
     );
 };
