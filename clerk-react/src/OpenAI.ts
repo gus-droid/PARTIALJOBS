@@ -1,6 +1,5 @@
 import OpenAI from 'openai';
-
-
+import {fetchNutritionData} from './NutritionNinja';
 
 
 
@@ -11,6 +10,8 @@ interface Ingredient {
   cost_usd: number;    // Cost in USD
   calories: number;    // Calories in the ingredient
   protein: number;     // Protein content in grams
+  fat: number;     // Total fat in grams
+  carbs: number;     // Total carbs in grams
 }
 
 // Define an interface for a meal (breakfast, lunch, dinner)
@@ -64,6 +65,20 @@ export async function get_meal_plan(carbs: number, protein: number, fat: number)
   const chatCompletion_: OpenAI.Chat.ChatCompletion = await client.chat.completions.create(params);
 
   const data = JSON.parse(chatCompletion_.choices[0].message.content);
+
+  // Correct data with NutritionNinja
+  for(const index in data["breakfast"]["ingredients"]) {
+    var ingredient = data.breakfast.ingredients[index];
+      var ingredient_name = ingredient.name;
+      var ingredient_amount = ingredient.quantity;
+      var prompt = ingredient_amount + " of " + ingredient_name;
+
+      var corrected_data = await fetchNutritionData(prompt);
+      ingredient.protein = corrected_data.items[0].protein_g;
+      ingredient.fat = corrected_data.items[0].fat_total_g;
+      ingredient.carbs = corrected_data.items[0].carbohydrates_total_g;
+    }
+  
 
   return data;
 }
