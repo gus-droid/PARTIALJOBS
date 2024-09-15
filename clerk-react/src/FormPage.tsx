@@ -131,11 +131,7 @@ const FormPage = () => {
                             <Typography variant="h6" color="primary" gutterBottom>
                                 Enter Your Details
                             </Typography>
-<<<<<<< HEAD
                             {['age', 'height', 'currentWeight', 'goalWeight', 'budget', 'preferences', 'weeks'].map((field) => (
-=======
-                            {['age', 'height', 'currentWeight', 'goalWeight', 'budget', 'allergies', 'dietaryRestrictions'].map((field) => (
->>>>>>> a0fedbd81f3799ad40c8426f5275816c06d74400
                                 <TextField
                                     key={field}
                                     label={field.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase())}
@@ -143,11 +139,7 @@ const FormPage = () => {
                                     name={field}
                                     value={formData[field]}
                                     onChange={handleChange}
-<<<<<<< HEAD
                                     required={['age', 'height', 'currentWeight', 'goalWeight', 'budget', 'preferences', 'weeks'].includes(field)}
-=======
-                                    required={['age', 'height', 'currentWeight', 'goalWeight', 'budget'].includes(field)}
->>>>>>> a0fedbd81f3799ad40c8426f5275816c06d74400
                                     sx={{ mb: 2 }}
                                 />
                             ))}
