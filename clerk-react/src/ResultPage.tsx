@@ -218,7 +218,7 @@ const ResultPage = () => {
                 This means you can eat {bmr + energy_cal} calories per day without any change in weight.</p>
                 <p>You will need a calorie deficit of {in_12_weeks} calories per day to lose {weight - target_weight} pounds in 12 weeks. 
                 This means that, if you want to lose weight, you should eat around {bmr + energy_cal + in_12_weeks} calories per day for 12 weeks 
-                to lose {weight - target_weight} calories. Your target BMI is {target_bmi}, and a helthy BMI is considered to be between 18.5
+                to lose {weight - target_weight} pounds. Your target BMI is {target_bmi}, and a helthy BMI is considered to be between 18.5
                 and 24.9.</p>
             </div>
         </Box>
