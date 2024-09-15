@@ -7,6 +7,7 @@ import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
 import axios from 'axios';
 
 // Our website Information Section
+// TODO: Delete info and add a title and catchprase underneath
 const items = [
     {
         icon: <ConstructionRoundedIcon sx={{ color: 'text.secondary' }} />,
@@ -34,6 +35,7 @@ type FormData = {
     currentWeight: string;
     goalWeight: string;
     budget: string;
+    allergies: string;
     dietaryRestrictions: string;
     [key: string]: string;
 };
@@ -57,15 +59,16 @@ const FormPage = () => {
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-      
+
         try {
-          const response = await axios.post('http://localhost:5000/api/users/create', formData);  // Ensure the URL is correct
-          console.log('User created:', response.data);
-          navigate('/result', { state: formData });
+            const response = await axios.post('http://localhost:5000/api/users/create', formData);  // Ensure the URL is correct
+            console.log('User created:', response.data);
+            navigate('/result', { state: formData });
         } catch (error) {
-          console.error('Error submitting data:', error);
+            console.error('Error submitting data:', error);
         }
-      };
+    };
+
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', color: "gray" }}>
@@ -73,12 +76,12 @@ const FormPage = () => {
             <AppBar position="static" elevation={0} sx={{ bgcolor: '#2c3e50' }}>
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#ecf0f1' }}>
-                        <Button color="inherit" href="/" sx={{ color: '#ecf0f1' }}>Partial</Button>
+                        <Button color="inherit" href="/" sx={{ color: '#ecf0f1' }}>PartialJobs</Button>
                     </Typography>
                     <Box sx={{ mr: 2 }}>
                         <Button color="inherit" component={Link} to="/about" sx={{ color: '#ecf0f1' }}>About Us</Button>
                         <Button color="inherit" component={Link} to="/progress" sx={{ color: '#ecf0f1' }}>My Progress</Button>
-                        {/* <Button color="inherit" component={Link} to="/diet-plan" sx={{ color: '#ecf0f1' }}>My Diet Plan</Button> */}
+                        <Button color="inherit" component={Link} to="/diet-plan" sx={{ color: '#ecf0f1' }}>My Diet Plan</Button>
                     </Box>
                 </Toolbar>
             </AppBar>
@@ -118,9 +121,8 @@ const FormPage = () => {
                                 maxWidth: 400,
                                 padding: 3,
                                 borderRadius: 1,
-                                boxShadow: '0 3px 5px 2px rgba(0, 0, 0, .2)',  // Updated shadow
-                                bgcolor: '#255255255',  // Dark background for form
-                                color: '#fff',  // White text color for form
+                                boxShadow: '0 3px 5px 2px rgba(0, 0, 0, .1)',
+                                bgcolor: 'background.paper',
                             }}
                             noValidate
                             autoComplete="off"
@@ -129,7 +131,11 @@ const FormPage = () => {
                             <Typography variant="h6" color="primary" gutterBottom>
                                 Enter Your Details
                             </Typography>
+<<<<<<< HEAD
                             {['age', 'height', 'currentWeight', 'goalWeight', 'budget', 'preferences', 'weeks'].map((field) => (
+=======
+                            {['age', 'height', 'currentWeight', 'goalWeight', 'budget', 'allergies', 'dietaryRestrictions'].map((field) => (
+>>>>>>> a0fedbd81f3799ad40c8426f5275816c06d74400
                                 <TextField
                                     key={field}
                                     label={field.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase())}
@@ -137,7 +143,11 @@ const FormPage = () => {
                                     name={field}
                                     value={formData[field]}
                                     onChange={handleChange}
+<<<<<<< HEAD
                                     required={['age', 'height', 'currentWeight', 'goalWeight', 'budget', 'preferences', 'weeks'].includes(field)}
+=======
+                                    required={['age', 'height', 'currentWeight', 'goalWeight', 'budget'].includes(field)}
+>>>>>>> a0fedbd81f3799ad40c8426f5275816c06d74400
                                     sx={{ mb: 2 }}
                                 />
                             ))}
