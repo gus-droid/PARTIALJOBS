@@ -77,7 +77,7 @@ const FormPage = () => {
                     <Box sx={{ mr: 2 }}>
                         <Button color="inherit" component={Link} to="/about" sx={{ color: '#ecf0f1' }}>About Us</Button>
                         <Button color="inherit" component={Link} to="/progress" sx={{ color: '#ecf0f1' }}>My Progress</Button>
-                        <Button color="inherit" component={Link} to="/diet-plan" sx={{ color: '#ecf0f1' }}>My Diet Plan</Button>
+                        {/* <Button color="inherit" component={Link} to="/diet-plan" sx={{ color: '#ecf0f1' }}>My Diet Plan</Button> */}
                     </Box>
                 </Toolbar>
             </AppBar>
@@ -118,7 +118,7 @@ const FormPage = () => {
                                 padding: 3,
                                 borderRadius: 1,
                                 boxShadow: '0 3px 5px 2px rgba(0, 0, 0, .2)',  // Updated shadow
-                                bgcolor: '#333',  // Dark background for form
+                                bgcolor: '#255255255',  // Dark background for form
                                 color: '#fff',  // White text color for form
                             }}
                             noValidate
