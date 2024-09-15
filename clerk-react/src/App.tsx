@@ -1,10 +1,9 @@
 // App.js - Simplified version
 import { Routes, Route } from 'react-router-dom';
 import { ClerkProvider } from '@clerk/clerk-react';
-import SignInPage from './SignInPage';
-import ProtectedRoute from './ProtectedRoute';
 import FormPage from './FormPage';
 import ResultPage from './ResultPage';
+import Header from './Header';
 
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -16,18 +15,15 @@ if (!PUBLISHABLE_KEY) {
 const App = () => {
   return (
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
+      <Header />
       <Routes>
         {/* FormPage can/was changed */}
         <Route path="/sign-in" element={<FormPage />} />
         <Route path="/" element={
-          <ProtectedRoute>
-            <FormPage />
-          </ProtectedRoute>
+          <FormPage />
         } />
         <Route path="/result" element={
-          <ProtectedRoute>
-            <ResultPage />
-          </ProtectedRoute>
+          <ResultPage />
         } />
       </Routes>
     </ClerkProvider>

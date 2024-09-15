@@ -126,12 +126,6 @@ const FormPage = () => {
                     <Button type="submit" variant="contained" color="primary">
                         Submit
                     </Button>
-                    <SignedOut>
-                        <SignInButton />
-                    </SignedOut>
-                    <SignedIn>
-                        <UserButton />
-                    </SignedIn>
                 </Box>
             </Box>
 

@@ -8,7 +8,7 @@ export enum ExerciseLevel {
 
 
 // Calculate BMR (Calories burned doing nothing)
-export function calculate_bmr(weight: number, height: number, age: number, male: bool): number {
+export function calculate_bmr(weight: number, height: number, age: number, male: boolean): number {
     if (male)
         return 66.47 + (6.24 * weight) + (12.7 * height) - (6.755 * age);
 
@@ -21,7 +21,7 @@ export function calorie_delta_goal(lbs_per_week: number): number {
 }
 
 export function energy_delta(bmr: number, level: ExerciseLevel): number {
-    switch(level) {
+    switch (level) {
         case ExerciseLevel.Sedentary:
             return bmr * 0.2;
         case ExerciseLevel.Light:
